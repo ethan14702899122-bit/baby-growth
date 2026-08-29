@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <meta name="theme-color" content="#ff7166" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="小芽成长" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="icon.svg" />
+  <link rel="stylesheet" href="style.css" />
+  <title>小芽成长</title>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar"><div><p class="eyebrow" id="todayLabel"></p><h1>小芽成长 <span>🌱</span></h1></div><button class="icon-button" id="settingsBtn" aria-label="设置">⚙️</button></header>
+    <section class="balance-card"><div><p>本周小星星</p><strong><span id="points">0</span><small>分</small></strong><p class="muted" id="weekMessage">每一次认真，都值得被看见</p></div><div class="sprout">⭐</div></section>
+
+    <nav class="tabs" aria-label="页面"><button class="tab active" data-view="today">今日考核</button><button class="tab" data-view="rewards">心愿奖励</button><button class="tab" data-view="stats">成长记录</button></nav>
+
+    <section id="today" class="view active">
+      <div class="section-heading"><div><h2>今天表现怎么样？</h2><p>轻点项目即可评分</p></div><button class="text-button" id="addTaskBtn">＋ 添加</button></div>
+      <div id="taskList" class="task-list"></div>
+      <button class="quick-note" id="addNoteBtn">✎ 记录今天的小进步或需要提醒的事</button>
+      <section class="recent"><h2>最近记录</h2><div id="recentList"></div></section>
+    </section>
+
+    <section id="rewards" class="view">
+      <div class="section-heading"><div><h2>心愿奖励</h2><p>用努力兑换期待</p></div><button class="text-button" id="addRewardBtn">＋ 添加</button></div>
+      <div id="rewardList" class="reward-list"></div>
+    </section>
+
+    <section id="stats" class="view">
+      <section class="stat-grid"><article><span>本周完成</span><strong id="weekDone">0</strong><small>次好表现</small></article><article><span>连续达标</span><strong id="streak">0</strong><small>天</small></article><article><span>累计星星</span><strong id="totalPoints">0</strong><small>分</small></article></section>
+      <section class="calendar-card"><div class="calendar-head"><h2 id="monthTitle"></h2><div><button class="mini-btn" id="prevMonth">‹</button><button class="mini-btn" id="nextMonth">›</button></div></div><div class="weekdays"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div><div id="calendar" class="calendar"></div><p class="legend"><i></i> 有好表现的日子</p></section>
+      <section class="category-card"><h2>本周考核</h2><div id="categoryStats"></div></section>
+      <section class="backup-card"><h2>数据备份</h2><p>数据只留在本机。可导出备份，换手机后再导入。</p><div><button class="outline-btn" id="exportBtn">导出备份</button><label class="outline-btn">导入备份<input id="importInput" type="file" accept="application/json" hidden /></label></div></section>
+    </section>
+  </main>
+
+  <dialog id="scoreDialog"><form method="dialog" class="modal"><button class="close" value="cancel">×</button><p class="eyebrow" id="scoreCategory"></p><h2 id="scoreTitle"></h2><p>选择今天的表现</p><div class="score-options"><button value="good" class="good">做得很棒 <b>+5</b></button><button value="okay" class="okay">基本完成 <b>+2</b></button><button value="bad" class="bad">需要提醒 <b>−2</b></button></div></form></dialog>
+  <dialog id="formDialog"><form id="entryForm" class="modal"><button type="button" class="close" id="closeForm">×</button><h2 id="formTitle"></h2><div id="formFields"></div><button class="primary-btn" type="submit">保存</button></form></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
